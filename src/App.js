@@ -51,7 +51,7 @@ export default function LandingPage() {
             });
         }, 1000);
         return () => clearInterval(timer);
-    }, [isAudioUnlocked]);
+    }, [isAudioUnlocked]); 
 
     const startFakeEnrollInterval = () => {
         clearInterval(fakeEnrollIntervalRef.current);
@@ -75,8 +75,11 @@ export default function LandingPage() {
         return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     };
     
+    // EDIT: This function is now more robust. It "primes" the audio on the first click.
     const unlockAudio = () => {
-        if (!isAudioUnlocked) {
+        if (!isAudioUnlocked && audioRef.current) {
+            audioRef.current.play().catch(() => {}); // Attempt to play
+            audioRef.current.pause(); // Immediately pause
             setIsAudioUnlocked(true);
         }
     };
@@ -161,7 +164,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="flex justify-center gap-4 flex-wrap mt-6">
-                        <a href="https://rzp.io/rzp/xKC01O2" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-2xl shadow-lg font-bold text-lg animate-pulse hover:animate-none transform hover:scale-105 transition-transform">
+                        <a href="https://rzp.io/l/your-payment-link" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-2xl shadow-lg font-bold text-lg animate-pulse hover:animate-none transform hover:scale-105 transition-transform">
                             Enroll Now @ ₹555
                         </a>
                     </div>
@@ -250,10 +253,9 @@ export default function LandingPage() {
                             </button>
                         </div>
                         <div className="aspect-video">
-                            {/* The user's correct YouTube embed link is now here */}
                             <iframe
                                 className="w-full h-full rounded"
-                                src="https://www.youtube.com/embed/NZwN9l7-jQs?si=Wxzxw2PIyeWo5M3m&controls=0&start=7"
+                                src="https://www.youtube.com/embed/g-gZp5a6EaQ"
                                 title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowFullScreen
