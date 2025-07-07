@@ -18,5 +18,8 @@
 .animate-scroll-x:hover {
   animation-play-state: paused;
 }
-
+/* Hover करने पर एनिमेशन रोकने के लिए यह कोड जोड़ें */
+.group:hover .animate-paused {
+  animation-play-state: paused;
+}
 

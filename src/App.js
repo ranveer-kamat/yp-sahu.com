@@ -8,17 +8,33 @@ const staticTestimonialsData = [
     { name: "Amit Joshi", feedback: "Ab maths interesting lagti hai. Simple aur clear explanation!", rating: 5 },
     { name: "Tarun Raj", feedback: "Maths ka dar khatam ho gaya sir!", rating: 5 },
     { name: "Reshma Khan", feedback: "CTET ke liye math clear ho gaya!", rating: 5 },
-    { name: "Harsh Pandey", feedback: "555 me itna best content mil gaya unbelievable!", rating: 5 },
-    { name: "Rohit Yadav", feedback: "Demo class dekh ke lag gaya ki ye course lena chahiye!", rating: 4 },
-    { name: "Kavita Sharma", feedback: "YT pe free se 100x accha course hai ye!", rating: 5 },
-    { name: "Nikita Singh", feedback: "Highly recommended for competitive exams!", rating: 5 }
+    // <--- यह कॉमा ज़रूरी है
+{ name: "Akash Gupta", feedback: "Sare basic concepts clear ho gaye, ab confidence badh gaya hai.", rating: 5 },
+{ name: "Ritu Sharma", feedback: "Teaching method bahut hi unique hai. Maths ab boring nahi lagti.", rating: 5 },
+{ name: "Sandeep Kumar", feedback: "Railway ki taiyari ke liye isse accha course nahi mil sakta.", rating: 5 },
+{ name: "Meenakshi Iyer", feedback: "Sir ke samjhane ka tarika lajawab hai. Har doubt solve ho jata hai.", rating: 5 },
+{ name: "Ajay Verma", feedback: "Pahle x aur y se dar lagta tha, ab algebra aasan lagta hai.", rating: 4 },
+{ name: "Priya Singh", feedback: "Class 9th ke liye perfect course. School me bhi marks improve hue.", rating: 5 },
+{ name: "Mohit Agarwal", feedback: "Geometry ke theorems itni aasani se samajh aa gaye, vishwas nahi hota.", rating: 5 },
+{ name: "Aarti Desai", feedback: "Competitive exams me speed aur accuracy dono badh gayi hai.", rating: 5 },
+{ name: "Chetan Joshi", feedback: "Jo log maths me kamzor hain, unke liye ye course वरदान hai.", rating: 5 },
+{ name: "Neha Patel", feedback: "Sir ka support system bahut achha hai. WhatsApp par bhi help mil jati hai.", rating: 5 },
+{ name: "Imran Khan", feedback: "Itne kam price me itna quality content, kamaal hai!", rating: 5 },
+{ name: "Divya Chauhan", feedback: "Mera foundation itna strong ho gaya hai ki ab main advanced topics bhi samajh leti hoon.", rating: 5 },
+{ name: "Yogesh Saini", feedback: "Practice sheets aur test se bahut help mili.", rating: 4 },
+{ name: "Komal Mishra", feedback: "Lifetime access milna is course ka sabse bada plus point hai.", rating: 5 },
+{ name: "Nitin Gupta", feedback: "Main banking ki taiyari kar rha hoon aur ye course bahut faydemand saabit hua.", rating: 5 }
 ];
 
 const locations = ['Bihar', 'Rajasthan', 'MP', 'Jharkhand', 'UP', 'Haryana'];
 
+// 10 new names added to the fake enrollments
 const fakeEnrollments = [
     "Raju enrolled 1m ago", "Amit enrolled just now", "Sneha enrolled 2m ago", "Ramesh enrolled 5m ago",
     "Pooja enrolled now", "Deepak enrolled 3m ago", "Ritika enrolled 4m ago", "Arjun enrolled just now",
+    "Sunita enrolled 1m ago", "Vikas enrolled now", "Geeta enrolled 4m ago", "Manoj enrolled 2m ago",
+    "Anjali enrolled 3m ago", "Rajesh enrolled now", "Priya enrolled 5m ago", "Sandeep enrolled 1m ago",
+    "Kavita enrolled 6m ago", "Suresh enrolled now"
 ];
 
 export default function LandingPage() {
@@ -51,7 +67,7 @@ export default function LandingPage() {
             });
         }, 1000);
         return () => clearInterval(timer);
-    }, [isAudioUnlocked]); 
+    }, [isAudioUnlocked]);
 
     const startFakeEnrollInterval = () => {
         clearInterval(fakeEnrollIntervalRef.current);
@@ -70,19 +86,24 @@ export default function LandingPage() {
     }, []);
 
     const formatTime = (seconds) => {
-        const m = Math.floor(seconds / 60);
-        const s = seconds % 60;
-        return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return {
+        minutes: m.toString().padStart(2, '0'),
+        seconds: s.toString().padStart(2, '0'),
     };
+};
     
-    // EDIT: This function is now more robust. It "primes" the audio on the first click.
     const unlockAudio = () => {
         if (!isAudioUnlocked && audioRef.current) {
-            audioRef.current.play().catch(() => {}); // Attempt to play
-            audioRef.current.pause(); // Immediately pause
+            audioRef.current.play().catch(() => {});
+            audioRef.current.pause();
             setIsAudioUnlocked(true);
         }
     };
+// यह लाइन जोड़ें
+const { minutes, seconds } = formatTime(timeLeft);
+
 
     return (
         <div onClick={unlockAudio} className="bg-gradient-to-br from-gray-50 to-blue-200 min-h-screen p-4 sm:p-6 md:p-12 font-sans relative overflow-x-hidden pt-16">
@@ -94,32 +115,60 @@ export default function LandingPage() {
             <audio ref={audioRef} src="/sounds/tick.mp3" preload="auto" />
 
             <section className="text-center pt-10 pb-4">
-                 <img
-                    src="/images/yp-sahu-sir.jpg"
-                    alt="YP Sahu Sir teaching"
-                    className="w-28 h-28 mx-auto rounded-full shadow-lg mb-4"
-                />
+                <div className="relative inline-block mx-auto mb-4">
+                    <img
+                        src="/images/yp-sahu-sir.jpg"
+                        alt="YP Sahu Sir teaching"
+                        className="w-28 h-28 mx-auto rounded-full shadow-lg"
+                    />
+                    
+                </div>
+
                 <h2 className="text-xl text-gray-800 font-bold mb-1">YP Sahu</h2>
                 <p className="text-sm text-gray-600 mb-6">MSc Mathematician</p>
-
-                <div className="max-w-3xl mx-auto bg-blue-50/50 border-l-4 border-blue-500 text-gray-700 p-6 rounded-r-lg text-left my-8 shadow-md">
-                    <p className="mb-4">📚" प्रिय छात्रों,</p>
-                    <p className="mb-4">Maths कोई विषय मात्र नहीं है – यह तर्क, अनुशासन और समस्या-समाधान का विज्ञान है। और जिस विद्यार्थी ने गणित को समझ लिया, वह जीवन में किसी भी चुनौती को हल करना सीख जाता है।</p>
-                    <p className="mb-4">मैं YP SAHU में यही सिखा रहा हूँ — कैसे गणित को केवल नंबरों की गिनती से ऊपर उठाकर जीवन की सोच बना दिया जाए।</p>
-                    <p className="mb-4">🔍 हमारा उद्देश्य केवल अंक लाना नहीं है, बल्कि सोच में गहराई लाना है।</p>
-                    <p className="mb-4">इसलिए हमने तैयार किया है –</p>
-                    <h4 className="font-bold text-xl text-blue-800 mb-2">Base of all mathematics</h4>
-                    <ul className="space-y-2 mb-4">
-                        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>प्रत्येक अध्याय को सहज, सरल और तार्किक तरीके से समझाया गया है</span></li>
-                        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>वीडियो लेक्चर, हैंडरिटन नोट्स और साप्ताहिक टेस्ट</span></li>
-                        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>Doubt Support और Exam-focused तैयारी</span></li>
-                        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>बोर्ड पैटर्न पर आधारित structured learning</span></li>
-                    </ul>
-                    <p className="mb-4">📖 अगर आप चाहते हैं कि आपकी गणित की नींव इतनी मजबूत हो कि कोई भी प्रश्न आपको मुश्किल न लगे – तो मैं आपको आमंत्रित करता हूँ, इस शिक्षायात्रा में हमारे साथ जुड़ने के लिए।</p>
-                    <p className="mb-4">क्योंकि एक शिक्षक का सबसे बड़ा संतोष तब होता है, जब उसका छात्र डर नहीं – आत्मविश्वास से भरा होता है।</p>
-                    <p className="font-semibold text-gray-800 mt-6">आपका मार्गदर्शक,</p>
-                    <p className="font-semibold text-gray-800">YP Sahu"</p>
-                </div>
+                {/* Digital Timer Starts Here */}
+<div className="relative h-24 max-w-2xl mx-auto mt-12 mb-4">
+    <div className="absolute top-0 left-0 text-center">
+        <div className="font-mono text-7xl font-bold text-slate-700">
+            {minutes}
+        </div>
+        <div className="text-sm font-semibold text-slate-500 tracking-widest">MINUTES</div>
+    </div>
+    {/* Hurry Up Text Starts Here */}
+<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="text-xl md:text-2xl font-bold text-red-600 animate-pulse">
+        Hurry Up!
+    </div>
+</div>
+{/* Hurry Up Text Ends Here */}
+    <div className="absolute top-0 right-0 text-center">
+        <div className="font-mono text-7xl font-bold text-slate-700">
+            {seconds}
+        </div>
+        <div className="text-sm font-semibold text-slate-500 tracking-widest">SECONDS</div>
+    </div>
+</div>
+{/* Digital Timer Ends Here */}
+{/* YP Sahu का मैसेज यहाँ से शुरू होता है */}
+<div className="max-w-3xl mx-auto bg-blue-50/50 border-l-4 border-blue-500 text-gray-700 p-6 rounded-r-lg text-left my-8 shadow-md">
+    <p className="mb-4">📚" प्रिय छात्रों,</p>
+    <p className="mb-4">Maths कोई विषय मात्र नहीं है – यह तर्क, अनुशासन और समस्या-समाधान का विज्ञान है। और जिस विद्यार्थी ने गणित को समझ लिया, वह जीवन में किसी भी चुनौती को हल करना सीख जाता है।</p>
+    <p className="mb-4">मैं YP SAHU में यही सिखा रहा हूँ — कैसे गणित को केवल नंबरों की गिनती से ऊपर उठाकर जीवन की सोच बना दिया जाए।</p>
+    <p className="mb-4">🔍 हमारा उद्देश्य केवल अंक लाना नहीं है, बल्कि सोच में गहराई लाना है।</p>
+    <p className="mb-4">इसलिए हमने तैयार किया है –</p>
+    <h4 className="font-bold text-xl text-blue-800 mb-2">Base of all mathematics</h4>
+    <ul className="space-y-2 mb-4">
+        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>प्रत्येक अध्याय को सहज, सरल और तार्किक तरीके से समझाया गया है</span></li>
+        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>वीडियो लेक्चर, हैंडरिटन नोट्स और साप्ताहिक टेस्ट</span></li>
+        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>Doubt Support और Exam-focused तैयारी</span></li>
+        <li className="flex items-start"><span className="mr-2 mt-1">✔</span><span>बोर्ड पैटर्न पर आधारित structured learning</span></li>
+    </ul>
+    <p className="mb-4">📖 अगर आप चाहते हैं कि आपकी गणित की नींव इतनी मजबूत हो कि कोई भी प्रश्न आपको मुश्किल न लगे – तो मैं आपको आमंत्रित करता हूँ, इस शिक्षायात्रा में हमारे साथ जुड़ने के लिए।</p>
+    <p className="mb-4">क्योंकि एक शिक्षक का सबसे बड़ा संतोष तब होता है, जब उसका छात्र डर नहीं – आत्मविश्वास से भरा होता है।</p>
+    <p className="font-semibold text-gray-800 mt-6">आपका मार्गदर्शक,</p>
+    <p className="font-semibold text-gray-800">YP Sahu"</p>
+</div>
+{/* YP Sahu का मैसेज यहाँ खत्म होता है */}
 
                 <div
                     className="relative max-w-sm mx-auto h-12 flex justify-center items-center"
@@ -134,13 +183,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-2xl shadow-2xl relative mt-5">
-                    <div className="absolute top-4 left-4 bg-orange-100 text-orange-800 font-bold px-3 py-1.5 rounded-md shadow-sm text-sm flex items-center gap-2">
-                        <span>Hurry Up!</span>
-                        <span className="text-xl animate-pulse">⏰</span>
-                        <span>{formatTime(timeLeft)}</span>
-                    </div>
-
-                    <h1 className="text-3xl md:text-5xl font-extrabold text-blue-900 mb-4 pt-10">
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-blue-900 mb-4">
                         Base of All Mathematics
                     </h1>
                      <p className="text-purple-800 font-semibold text-lg mb-4">
@@ -164,8 +207,11 @@ export default function LandingPage() {
                     </div>
 
                     <div className="flex justify-center gap-4 flex-wrap mt-6">
-                        <a href="https://rzp.io/l/your-payment-link" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-2xl shadow-lg font-bold text-lg animate-pulse hover:animate-none transform hover:scale-105 transition-transform">
+                        <a href="https://rzp.io/rzp/xKC01O2" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-2xl shadow-lg font-bold text-lg animate-pulse hover:animate-none transform hover:scale-105 transition-transform">
                             Enroll Now @ ₹555
+                        </a>
+                        <a href="https://wa.me/917701903701?text=i%20want%20to%20buy%20base%20of%20maths" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-2xl shadow font-bold text-lg flex items-center">
+                            Chat on WhatsApp
                         </a>
                     </div>
                 </div>
@@ -215,7 +261,7 @@ export default function LandingPage() {
                     ❤️ Students Ka Feedback
                 </h2>
                 <div className="relative w-full overflow-hidden">
-                    <div className="flex gap-6 animate-scroll-x-fast w-max">
+                    <div className="flex gap-6 animate-scroll-x-slow w-max">
                         {[...Array(2)].map((_, i) =>
                             staticTestimonials.map((t, idx) => (
                                 <div
@@ -255,7 +301,7 @@ export default function LandingPage() {
                         <div className="aspect-video">
                             <iframe
                                 className="w-full h-full rounded"
-                                src="https://www.youtube.com/embed/g-gZp5a6EaQ"
+                                src="https://www.youtube-nocookie.com/embed/NZwN9l7-jQs?si=ONrX_Sx0JASR3-UZ&start=14"
                                 title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowFullScreen

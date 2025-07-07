@@ -10,7 +10,8 @@ module.exports = {
         'scroll-x': 'scroll-x 40s linear infinite',
         
         // ADD THIS NEW LINE FOR A FASTER ANIMATION
-        'scroll-x-fast': 'scroll-x 25s linear infinite', 
+        'scroll-x-fast': 'scroll-x 15s linear infinite', 
+        'scroll-x-slow': 'scroll-x 120s linear infinite',
       },
       keyframes: {
         'scroll-x': {
