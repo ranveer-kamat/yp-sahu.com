@@ -112,7 +112,7 @@ const { minutes, seconds } = formatTime(timeLeft);
                 <p className="font-bold animate-pulse">Limited Time Offer! Enroll Now!</p>
             </div>
 
-            <audio ref={audioRef} src="/sounds/tick.mp3" preload="auto" />
+            <audio ref={audioRef} src="/sounds/ticking.mp3" preload="auto" />
 
             <section className="text-center pt-10 pb-4">
                 <div className="relative inline-block mx-auto mb-4">
