@@ -126,6 +126,9 @@ const { minutes, seconds } = formatTime(timeLeft);
 
                 <h2 className="text-xl text-gray-800 font-bold mb-1">YP Sahu</h2>
                 <p className="text-sm text-gray-600 mb-6">MSc Mathematician</p>
+                <p className="text-purple-700 font-semibold mt-2 text-md mb-6">
+    अब गणित से डर नहीं, दोस्ती होगी!
+</p>
                 {/* Digital Timer Starts Here */}
 <div className="relative h-24 max-w-2xl mx-auto mt-12 mb-4">
     <div className="absolute top-0 left-0 text-center">
@@ -202,19 +205,32 @@ const { minutes, seconds } = formatTime(timeLeft);
                             Real Price <span className="line-through text-red-500">₹2499</span>
                         </div>
                         <div className="text-3xl font-extrabold text-green-600 mt-1">
-                            Aaj sirf ₹555 me!
+                            Aaj sirf ₹199 me!
                         </div>
                     </div>
 
                     <div className="flex justify-center gap-4 flex-wrap mt-6">
-                        <a href="https://rzp.io/rzp/xKC01O2" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-2xl shadow-lg font-bold text-lg animate-pulse hover:animate-none transform hover:scale-105 transition-transform">
-                            Enroll Now @ ₹555
+                        <a href="https://ypsahu.com/single-checkout/685ef965d331d71b43104b06?pid=p1" className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-2xl shadow-lg font-bold text-lg animate-pulse hover:animate-none transform hover:scale-105 transition-transform">
+                            Enroll Now @ ₹199
                         </a>
                         <a href="https://wa.me/917701903701?text=i%20want%20to%20buy%20base%20of%20maths" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-2xl shadow font-bold text-lg flex items-center">
                             Chat on WhatsApp
                         </a>
                     </div>
-                </div>
+                   {/* Money-Back Guarantee Section Starts Here */}
+<div className="mt-6 bg-green-50/70 border-l-4 border-green-500 text-green-800 p-4 rounded-r-lg">
+    <div className="flex items-center">
+        <div className="text-2xl mr-3">🛡️</div>
+        <div>
+            <h4 className="font-bold">7-Day Money-Back Guarantee</h4>
+            <p className="text-sm">अगर आप कोर्स से 100% संतुष्ट नहीं हैं, तो आपके पूरे पैसे वापस कर दिए जाएँगे। कोई सवाल नहीं पूछा जाएगा।</p>
+        </div>
+    </div>
+</div>
+{/* Money-Back Guarantee Section Ends Here */}
+</div> 
+
+              
             </section>
             
             <section className="mt-16 bg-white rounded-xl shadow-xl p-6 md:p-12 max-w-4xl mx-auto">
